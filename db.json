@@ -1,0 +1,27 @@
+{
+    "products":[
+        {
+            "id":1,
+            "name":"Digital Watch",
+            "brand":"Titan",
+            "category":"womens",
+            "price":20000,
+            "images":"dfghfdhfghf"
+        }
+    ],
+
+    "admin":[
+        {
+            "id":1,
+            "adminname":"ADMIN",
+            "adminid":"admin@gmail.com",
+            "password":"admin123"
+        },
+        {
+            "id":1,
+            "adminname":"Aman",
+            "adminid":"aman@gmail.com",
+            "password":"aman123"
+        }
+    ]
+}
