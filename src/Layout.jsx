@@ -9,7 +9,6 @@ const Layout = () => {
     <>
     <TopHeader/>
     <TopMenu/>
-    <hr />
     <Outlet/>
     <Footer/>
     </>

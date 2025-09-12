@@ -1,27 +1,26 @@
 {
-    "products":[
-        {
-            "id":1,
-            "name":"Digital Watch",
-            "brand":"Titan",
-            "category":"womens",
-            "price":20000,
-            "images":"dfghfdhfghf"
-        }
-    ],
-
-    "admin":[
-        {
-            "id":1,
-            "adminname":"ADMIN",
-            "adminid":"admin@gmail.com",
-            "password":"admin123"
-        },
-        {
-            "id":1,
-            "adminname":"Aman",
-            "adminid":"aman@gmail.com",
-            "password":"aman123"
-        }
-    ]
+  "products": [
+    {
+      "id": "bd88",
+      "name": "Karishma men's watch",
+      "brand": "Titan",
+      "category": "male",
+      "price": "2300",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757683024/viyc52tvbcwmv6kebprg.webp"
+    }
+  ],
+  "admin": [
+    {
+      "id": "1",
+      "adminname": "ADMIN",
+      "adminid": "admin@gmail.com",
+      "password": "admin123"
+    },
+    {
+      "id": "1",
+      "adminname": "Aman",
+      "adminid": "aman@gmail.com",
+      "password": "aman123"
+    }
+  ]
 }

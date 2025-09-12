@@ -48,8 +48,9 @@ const TopMenu = () => {
       </div>
 
       <div id='mainmenu' className='w-[50%] p-1'>
-      <Navbar bg="light" data-bs-theme="light">
+      <Navbar  >
         <Container>
+          
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
