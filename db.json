@@ -7,6 +7,70 @@
       "category": "male",
       "price": "2300",
       "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757683024/viyc52tvbcwmv6kebprg.webp"
+    },
+    {
+      "id": "1242",
+      "name": "Fossil Gwen Analogue Women's Watch (Gold Dial Womens Standard Colored)-Es4879 Gold Plated, Gold Strap - Gold-Plated",
+      "brand": "Fossil",
+      "category": "female",
+      "price": "3200",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761546/h60y0s9kmj5nod5qoh8k.jpg"
+    },
+    {
+      "id": "1e45",
+      "name": "Fossil Men Leather Grant Sport Analog Blue Dial Watch-Fs5237, Band Color-Blue",
+      "brand": "Fossil",
+      "category": "male",
+      "price": "5299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761616/co52ffum8ngspjl3litz.jpg"
+    },
+    {
+      "id": "6ad8",
+      "name": "Titan Women's Embellished Dial Straps Analogue Watch",
+      "brand": "Titan",
+      "category": "female",
+      "price": "2299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761716/wvv5lbljoekpqny7qtor.webp"
+    },
+    {
+      "id": "ab1d",
+      "name": "Titan Octane Analog Silver Dial Men's Watch NM90086KM02/NN90086KM02/NP90086KM02",
+      "brand": "Titan",
+      "category": "male",
+      "price": "12299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761805/bzzqjlhiiphbx044zgvi.webp"
+    },
+    {
+      "id": "3627",
+      "name": "Titan Octane Analog Silver Dial Men's Watch NM90086KM02/NN90086KM02/NP90086KM02",
+      "brand": "Titan",
+      "category": "male",
+      "price": "12299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761828/mxu8kk9adprklnnhkrn7.webp"
+    },
+    {
+      "id": "8b53",
+      "name": "Fastrack Men's Opulence Sun Moon Chronograph Analog Quartz Watch",
+      "brand": "Fastrack",
+      "category": "male",
+      "price": "10299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757761892/ptne2zlhejcct1rvxjij.webp"
+    },
+    {
+      "id": "4880",
+      "name": "Shocknshop Digital Kids Children Multi Functional Watch",
+      "brand": "Timex",
+      "category": "kids",
+      "price": "299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757762006/fgo8xa5ffi4un0b5qkmn.webp"
+    },
+    {
+      "id": "d5f0",
+      "name": "Carlington Kids Digital Watch CT_321",
+      "brand": "Armani",
+      "category": "kids",
+      "price": "1299",
+      "image": "http://res.cloudinary.com/dvboic0p4/image/upload/v1757762122/eocuvidqvtxolxxiz8y0.webp"
     }
   ],
   "admin": [

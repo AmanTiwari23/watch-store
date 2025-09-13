@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Carousel from 'react-bootstrap/Carousel';
 import ban1 from "../images/ban1.webp";
 import ban2 from "../images/ban2.webp";
@@ -15,9 +15,44 @@ import card2 from "../images/card2.webp"
 import card3 from "../images/card3.webp"
 import card4 from "../images/card4.webp"
 import card5 from "../images/card5.webp"
+import axios from 'axios';
 
 
 const Home = () => {
+  const[mydata,setMydata] = useState([]);
+
+  const loadData = async()=>{
+    let api = "http://localhost:3000/products";
+    const response = await axios.get(api);
+    console.log(response.data);
+    setMydata(response.data);
+  }
+
+  useEffect(()=>{
+    loadData();
+  },[])
+
+  const ans = mydata.map((key)=>{
+    return(
+      <>
+        <Card className='w-56'>
+      <Card.Img variant="top" src={key.image} className='w-10 h-48' />
+      <Card.Body>
+        <Card.Title>{key.brand}</Card.Title>
+        <Card.Text>
+           {key.name}
+           <br />
+           <span style={{color:"red"}}>Category : {key.category}</span> 
+           <br />
+           <span style={{color:"navy" , fontWeight:"bold"}}>Price : {key.price}</span> 
+        </Card.Text>
+        <Button variant="primary">Add To Cart</Button>
+      </Card.Body>
+    </Card>
+      </>
+    )
+  })
+
   return (
    <>
     <Carousel className="">
@@ -69,68 +104,9 @@ const Home = () => {
 
     <h1 className='bg-gray-100 justify-center text-center mt-1 mb-1' >Our Top Collection</h1>
 
-    <div id='topwatches' className='flex justify-center items-center gap-1 flex-wrap'>
+    <div id='topwatches' className='flex justify-evenly items-center  flex-wrap'>
+      {ans}
       
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={card1} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={card2} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={card3} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={card4} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={card5} />
-      <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-
     </div>
    </>
   )
