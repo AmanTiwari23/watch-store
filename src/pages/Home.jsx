@@ -9,12 +9,6 @@ import ban6 from "../images/ban6.webp";
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
-import card1 from "../images/card1.webp"
-import card2 from "../images/card2.webp"
-import card3 from "../images/card3.webp"
-import card4 from "../images/card4.webp"
-import card5 from "../images/card5.webp"
 import axios from 'axios';
 
 
@@ -35,20 +29,44 @@ const Home = () => {
   const ans = mydata.map((key)=>{
     return(
       <>
-        <Card className='w-56'>
-      <Card.Img variant="top" src={key.image} className='w-10 h-48' />
-      <Card.Body>
-        <Card.Title>{key.brand}</Card.Title>
-        <Card.Text>
-           {key.name}
-           <br />
-           <span style={{color:"red"}}>Category : {key.category}</span> 
-           <br />
-           <span style={{color:"navy" , fontWeight:"bold"}}>Price : {key.price}</span> 
-        </Card.Text>
-        <Button variant="primary">Add To Cart</Button>
-      </Card.Body>
-    </Card>
+      <Card className="w-full sm:w-60 md:w-64 lg:w-72 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden">
+  {/* Image */}
+  <Card.Img
+    variant="top"
+    src={key.image}
+    className="h-48 w-full object-cover"
+  />
+
+  {/* Card Body */}
+  <Card.Body className="p-4">
+    {/* Brand */}
+    <Card.Title className="text-lg font-semibold mb-1">{key.brand}</Card.Title>
+
+    {/* Product Name (truncate after 2 lines) */}
+    <Card.Text className="text-sm text-gray-700 line-clamp-2 mb-2">
+      {key.name}
+    </Card.Text>
+
+    {/* Category */}
+    <p className="text-sm text-red-500 mb-1">
+      Category: {key.category}
+    </p>
+
+    {/* Price */}
+    <p className="text-base font-bold text-blue-900 mb-3">
+      Price: ₹{key.price}
+    </p>
+
+    {/* Button */}
+    <Button
+      variant="primary"
+      className="w-full py-2 font-medium rounded-lg"
+    >
+      Add To Cart
+    </Button>
+  </Card.Body>
+</Card>
+
       </>
     )
   })

@@ -1,102 +1,148 @@
-import React, { useState } from 'react'
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import logo from "../images/titan-logo.svg";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import {
+  FiSearch,
+  FiUser,
+  FiShoppingBag,
+  FiHeart,
+  FiMenu,
+  FiX,
+} from "react-icons/fi";
 
+import logo from "../images/cronotime.png";
+import { Link, useNavigate } from "react-router-dom";
 
 const TopMenu = () => {
-  const [show,setShow] = useState(false);
-  const [email,setEmail]= useState("");
-  const [password,setPassword] = useState("");
+  
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const handleShow = () => setShow(true);
-  const handleClose = ()=>setShow(false);
-
-  const handleSubmit = async(e)=>{
-    e.preventDefault();
-    let api = `http://localhost:3000/admin/?adminid=${email}`;
-
-    const response = await axios.get(api);
-
-    console.log(response.data);
-
-    if(response.data.length>=1){
-      
-        if(response.data[0].password == password){
-                navigate("/admin");
-        }else{
-          alert("wrong password");
-        }
-      
-    }else{
-      alert("Invalid Email");
-    }
-
-  }
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const toggleMobile = () => setMobileOpen((s) => !s);
 
   return (
     <>
-    <div id='topmenu' className='flex justify-between items-center ml-3.5 mr-3.5'>
-      <div id='logo'className='ml-6'>
-        <img src={logo} alt="logo" className='w-32' />
-      </div>
 
-      <div id='mainmenu' className='w-[50%] p-1'>
-      <Navbar  >
-        <Container>
+      <header className="w-full bg-white shadow-black shadow gap-2">
+        <div className="mx-auto max-w-full px-4 sm:px-4 lg:px-6 flex h-16 items-center justify-between">
+         
+            <div className="flex justify-center items-center">
+              <Link to="/" className="flex justify-center items-center" style={{textDecoration:"none"}}>
+              <img src={logo} alt="logo" className="w-8 mr-1.5" />{" "}
+              <span className="text-xl font-bold text-gray-800">
+                CRONOTIME
+              </span>
+              </Link>
+            </div>
+         
+
           
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      </div>
-      <div id='rightmenu'>
-         <Button variant="secondary" onClick={handleShow}> Admin login</Button>
-         
-      </div>
+            <div className="flex-1 px-4 hidden md:flex items-center max-w-xl mx-auto">
+              <label className="relative w-full">
+                <input
+                  type="search"
+                  placeholder="Search for products, collections, models..."
+                  className="w-full rounded-full border border-gray-200 py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                />
+                <FiSearch className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+              </label>
+            </div>
+          
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Admin Login</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-         
-           <Form>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" name="email" value={email} onChange={(e)=>{setEmail(e.target.value)}} />
-      </Form.Group>
+          <div className="flex items-center gap-3">
+            <button
+              aria-label="Search (mobile)"
+              className="md:hidden p-2 rounded-full hover:bg-gray-100"
+              onClick={() => {
+                const el = document.querySelector('input[type="search"]');
+                if (el) el.focus();
+              }}
+            >
+              <FiSearch className="h-5 w-5 text-gray-700" />
+            </button>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" name="password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
-      </Form.Group>
-     
-      <Button variant="primary" type="submit" onClick={handleSubmit}>
-       Login
-      </Button>
-    </Form>
+            <Link
+              to="wishlist"
+              className="hidden md:inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 "
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiHeart className="h-5 w-5" />
+              <span className="text-sm">Wishlist</span>
+            </Link>
 
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+            <Link
+              to="register"
+              className="inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiUser className="h-5 w-5" />
+              <span className="hidden sm:inline-block text-sm">Account</span>
+            </Link>
 
-    </div>
+            <Link
+              to="cart"
+              className="inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiShoppingBag className="h-5 w-5" />
+              <span className="hidden sm:inline-block text-sm">Cart</span>
+            </Link>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={toggleMobile}
+              className="ml-1 inline-flex items-center rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden"
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? (
+                <FiX className="h-6 w-6" />
+              ) : (
+                <FiMenu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile menu panel */}
+        <div
+          className={`md:hidden ${
+            mobileOpen ? "block" : "hidden"
+          } border-t border-gray-100 bg-white`}
+          aria-hidden={!mobileOpen}
+        >
+          <div className="space-y-2 px-4 py-4">
+            <div className="mt-2 border-t border-gray-100 pt-3">
+             <Link
+              to="wishlist"
+              className="hidden md:inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100 "
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiHeart className="h-5 w-5" />
+              <span className="text-sm">Wishlist</span>
+            </Link>
+
+            <Link
+              to="register"
+              className="inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiUser className="h-5 w-5" />
+              <span className="hidden sm:inline-block text-sm">Account</span>
+            </Link>
+
+            <Link
+              to="cart"
+              className="inline-flex items-center gap-2 p-2 rounded-full hover:bg-gray-100"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <FiShoppingBag className="h-5 w-5" />
+              <span className="hidden sm:inline-block text-sm">Cart</span>
+            </Link>
+            </div>
+          </div>
+        </div>
+      </header>
     </>
-  )
-}
+  );
+};
 
 export default TopMenu;
