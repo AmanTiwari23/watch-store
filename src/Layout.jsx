@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <>
 
-    <TopMenu/>
+    <TopMenu />
     <Outlet/>
     <Footer/>
     </>

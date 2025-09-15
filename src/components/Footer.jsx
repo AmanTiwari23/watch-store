@@ -3,10 +3,10 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn, FaYoutube, FaCcVisa,
 export default function Footer() {
   return (
     <>
-    <footer className="bg-gray-900 text-gray-300 py-10">
+    <footer className="bg-gray-800 text-gray-300 py-6">
       <div className="max-w-7xl mx-auto px-6">
         {/* Top Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 pb-10 border-b border-gray-700">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 pb-10 border-b border-gray-700">
           {/* Company */}
           <div>
             <h3 className="text-white font-semibold mb-4">Company</h3>
@@ -15,7 +15,6 @@ export default function Footer() {
               <li><a href="#" className="hover:text-white">Careers</a></li>
               <li><a href="#" className="hover:text-white">Blog</a></li>
               <li><a href="#" className="hover:text-white">Press</a></li>
-              <li><a href="#" className="hover:text-white">Travel Guides</a></li>
             </ul>
           </div>
 
@@ -32,28 +31,9 @@ export default function Footer() {
           </div>
 
           {/* Other Services */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Other Services</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">Hotels</a></li>
-              <li><a href="#" className="hover:text-white">Flights</a></li>
-              <li><a href="#" className="hover:text-white">Flight + Hotel</a></li>
-              <li><a href="#" className="hover:text-white">Car Rentals</a></li>
-              <li><a href="#" className="hover:text-white">Travel Insurance</a></li>
-            </ul>
-          </div>
 
-          {/* Top Destinations */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Top Destinations</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-white">Delhi</a></li>
-              <li><a href="#" className="hover:text-white">Mumbai</a></li>
-              <li><a href="#" className="hover:text-white">Bangalore</a></li>
-              <li><a href="#" className="hover:text-white">Goa</a></li>
-              <li><a href="#" className="hover:text-white">Dubai</a></li>
-            </ul>
-          </div>
+
+    
 
           {/* Newsletter & App */}
           <div>

@@ -10,10 +10,13 @@ import ban6 from "../images/ban6.webp";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import axios from 'axios';
+import { addTocart } from '../cartSlice';
+import { useDispatch } from 'react-redux';
 
 
 const Home = () => {
   const[mydata,setMydata] = useState([]);
+  const dispatch = useDispatch();
 
   const loadData = async()=>{
     let api = "http://localhost:3000/products";
@@ -29,7 +32,7 @@ const Home = () => {
   const ans = mydata.map((key)=>{
     return(
       <>
-      <Card className="w-full sm:w-60 md:w-64 lg:w-72 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden">
+      <Card className="w-full sm:w-60 md:w-64 lg:w-72 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden m-2">
   {/* Image */}
   <Card.Img
     variant="top"
@@ -43,7 +46,7 @@ const Home = () => {
     <Card.Title className="text-lg font-semibold mb-1">{key.brand}</Card.Title>
 
     {/* Product Name (truncate after 2 lines) */}
-    <Card.Text className="text-sm text-gray-700 line-clamp-2 mb-2">
+    <Card.Text className="text-sm text-gray-700 line-clamp-1 mb-2">
       {key.name}
     </Card.Text>
 
@@ -60,7 +63,7 @@ const Home = () => {
     {/* Button */}
     <Button
       variant="primary"
-      className="w-full py-2 font-medium rounded-lg"
+      className="w-full py-2 font-medium rounded-lg"  onClick={()=>{dispatch(addTocart({id:key.id, name:key.name, brand:key.brand, category:key.category, price:key.price, image:key.image, qnty:1}))}}
     >
       Add To Cart
     </Button>
@@ -122,7 +125,7 @@ const Home = () => {
 
     <h1 className='bg-gray-100 justify-center text-center mt-1 mb-1' >Our Top Collection</h1>
 
-    <div id='topwatches' className='flex justify-evenly items-center  flex-wrap'>
+    <div id='topwatches' className='flex justify-evenly items-center  flex-wrap w-[90%] m-auto'>
       {ans}
       
     </div>

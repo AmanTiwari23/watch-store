@@ -6,6 +6,7 @@ import AdminDashBoard from './AdminDashBoard'
 import AddProduct from './adminpages/AddProduct'
 import Register from './pages/Register'
 import Login from './pages/Login'
+import Mycart from './pages/Mycart'
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
         <Route index element={<Home/>}/>
         <Route path='register' element={<Register/>}/>
         <Route path='login' element={<Login/>}/>
+        <Route path='mycart' element={<Mycart/>}/>
 
       </Route>
     </Routes>
