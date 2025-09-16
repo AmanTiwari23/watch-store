@@ -80,7 +80,6 @@
     }
   ],
   "checkout": [
-   
     {
       "id": "7b5c",
       "name": "anuj",
@@ -88,6 +87,29 @@
       "shipadd": "chirahulacolony",
       "contact": "9589494401",
       "zipcode": "53456"
+    },
+    {
+      "id": "1a7e",
+      "name": "arvind",
+      "city": "bhopal",
+      "shipadd": "govindpura govind garden",
+      "contact": "8530285729",
+      "zipcode": "522003"
+    },
+    {
+      "id": "72a8",
+      "name": "piyush",
+      "city": "satna",
+      "shipadd": "goindgarden",
+      "contact": "95893494",
+      "zipcode": "485001",
+      "products": [
+        {
+          "id": "1242",
+          "name": "Fossil Gwen Analogue Women's Watch (Gold Dial Womens Standard Colored)-Es4879 Gold Plated, Gold Strap - Gold-Plated"
+        }
+      ],
+      "totalAmount": 3200
     }
   ]
 }
