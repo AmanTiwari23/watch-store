@@ -1,37 +1,62 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from './Layout'
-import Home from './pages/Home'
-import AdminDashBoard from './AdminDashBoard'
-import AddProduct from './adminpages/AddProduct'
-import Register from './pages/Register'
-import Login from './pages/Login'
-import Mycart from './pages/Mycart'
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './pages/Home';
+import AdminDashBoard from './AdminDashBoard';
+import AddProduct from './adminpages/AddProduct';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Mycart from './pages/Mycart';
+import Checkout from './pages/Checkout';
+import PaymentDone from './pages/PaymentDone';
+import Orders from './adminpages/Orders';
 
+// Loader Component
+const Loader = () => (
+  <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+    <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+  </div>
+);
+
+// AppWrapper to use useLocation inside BrowserRouter
+const AppWrapper = () => {
+  const location = useLocation();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => setLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, [location]);
+
+  return (
+    <>
+      {loading && <Loader />}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="mycart" element={<Mycart />} />
+          <Route path='checkout' element={<Checkout/>}/>
+          <Route path='paydone' element={<PaymentDone/>} />
+        </Route>
+
+        <Route path="/admin" element={<AdminDashBoard />}>
+          <Route path="addproduct" element={<AddProduct />} />
+          <Route path="orders" element={<Orders/>} />
+        </Route>
+      </Routes>
+    </>
+  );
+};
 
 const App = () => {
   return (
-    <>
     <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-
-        <Route index element={<Home/>}/>
-        <Route path='register' element={<Register/>}/>
-        <Route path='login' element={<Login/>}/>
-        <Route path='mycart' element={<Mycart/>}/>
-
-      </Route>
-    </Routes>
-
-    <Routes>
-      <Route path="/admin" element={<AdminDashBoard/>}>
-      <Route path='addproduct' element={<AddProduct/>}/>
-      </Route>
-    </Routes>
+      <AppWrapper />
     </BrowserRouter>
-    </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

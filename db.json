@@ -78,5 +78,16 @@
       "adminid": "aman@gmail.com",
       "password": "aman123"
     }
+  ],
+  "checkout": [
+   
+    {
+      "id": "7b5c",
+      "name": "anuj",
+      "city": "rewa",
+      "shipadd": "chirahulacolony",
+      "contact": "9589494401",
+      "zipcode": "53456"
+    }
   ]
 }

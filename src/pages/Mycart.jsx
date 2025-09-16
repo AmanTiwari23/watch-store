@@ -5,10 +5,17 @@ import { FaSquareMinus } from "react-icons/fa6";
 import { FaRupeeSign } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { cartDataRemove, decQnty, incQnty } from "../cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Mycart = () => {
   const cartdata = useSelector((store) => store.mycart.cart);
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const checkout = () =>{
+    navigate("/checkout");
+  }
 
   let TotalAmount = 0;
   const ans = cartdata.map((key) => {
@@ -56,8 +63,11 @@ const Mycart = () => {
       <h3 className="flex items-center justify-center gap-1 font-semibold">
         Total Amount :
         <FaRupeeSign className="inline-block" />
-        {TotalAmount}
+        {TotalAmount} 
+        
+        <button className="bg-blue-500 text-white !rounded-xl px-4 py-2"  onClick={checkout}>Checkout</button>
       </h3>
+      
 
       <Table striped bordered hover>
         <thead>
