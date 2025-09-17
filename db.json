@@ -81,22 +81,6 @@
   ],
   "checkout": [
     {
-      "id": "7b5c",
-      "name": "anuj",
-      "city": "rewa",
-      "shipadd": "chirahulacolony",
-      "contact": "9589494401",
-      "zipcode": "53456"
-    },
-    {
-      "id": "1a7e",
-      "name": "arvind",
-      "city": "bhopal",
-      "shipadd": "govindpura govind garden",
-      "contact": "8530285729",
-      "zipcode": "522003"
-    },
-    {
       "id": "72a8",
       "name": "piyush",
       "city": "satna",

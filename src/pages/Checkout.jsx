@@ -87,6 +87,7 @@ const Checkout = () => {
                 <Label htmlFor="name">Full Name</Label>
                 <Input type="text" name="name" onChange={handleInput} required />
               </div>
+              
               <div>
                 <Label htmlFor="city">City</Label>
                 <Input type="text" name="city" onChange={handleInput} required />

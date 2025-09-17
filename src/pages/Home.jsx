@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import Carousel from 'react-bootstrap/Carousel';
+import React, { useEffect, useState } from "react";
+import Carousel from "react-bootstrap/Carousel";
+import axios from "axios";
+import ProductCard from "../components/ProductCard";
+
 import ban1 from "../images/ban1.webp";
 import ban2 from "../images/ban2.webp";
 import ban3 from "../images/ban3.webp";
@@ -7,130 +10,84 @@ import ban4 from "../images/ban4.webp";
 import ban5 from "../images/ban5.webp";
 import ban6 from "../images/ban6.webp";
 
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import axios from 'axios';
-import { addTocart } from '../cartSlice';
-import { useDispatch } from 'react-redux';
-
-
 const Home = () => {
-  const[mydata,setMydata] = useState([]);
-  const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
 
-  const loadData = async()=>{
-    let api = "http://localhost:3000/products";
-    const response = await axios.get(api);
-    console.log(response.data);
-    setMydata(response.data);
-  }
-
-  useEffect(()=>{
-    loadData();
-  },[])
-
-  const ans = mydata.map((key)=>{
-    return(
-      <>
-      <Card className="w-full sm:w-60 md:w-64 lg:w-72 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl overflow-hidden m-2">
-  {/* Image */}
-  <Card.Img
-    variant="top"
-    src={key.image}
-    className="h-48 w-full object-cover"
-  />
-
-  {/* Card Body */}
-  <Card.Body className="p-4">
-    {/* Brand */}
-    <Card.Title className="text-lg font-semibold mb-1">{key.brand}</Card.Title>
-
-    {/* Product Name (truncate after 2 lines) */}
-    <Card.Text className="text-sm text-gray-700 line-clamp-1 mb-2">
-      {key.name}
-    </Card.Text>
-
-    {/* Category */}
-    <p className="text-sm text-red-500 mb-1">
-      Category: {key.category}
-    </p>
-
-    {/* Price */}
-    <p className="text-base font-bold text-blue-900 mb-3">
-      Price: ₹{key.price}
-    </p>
-
-    {/* Button */}
-    <Button
-      variant="primary"
-      className="w-full py-2 font-medium rounded-lg"  onClick={()=>{dispatch(addTocart({id:key.id, name:key.name, brand:key.brand, category:key.category, price:key.price, image:key.image, qnty:1}))}}
-    >
-      Add To Cart
-    </Button>
-  </Card.Body>
-</Card>
-
-      </>
-    )
-  })
+  useEffect(() => {
+    axios.get("http://localhost:3000/products").then((res) => setProducts(res.data));
+  }, []);
 
   return (
-   <>
-    <Carousel className="">
-      <Carousel.Item >
-       <img src={ban1} alt='banner'  className='max-w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-         <img src={ban2} alt='banner'  className='w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img src={ban3} alt='banner' className='w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-       <Carousel.Item >
-       <img src={ban4} alt='banner'  className='w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-       <Carousel.Item >
-       <img src={ban5} alt='banner'  className='w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-       <Carousel.Item >
-       <img src={ban6} alt='banner'  className='w-full h-1/3'/>
-        <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+    <>
+      {/* Carousel */}
+      <Carousel interval={3000}>
+        {[ban1, ban2, ban3, ban4, ban5, ban6].map((b, i) => (
+          <Carousel.Item key={i}>
+            <img src={b} alt="banner" className="w-full h-[500px] object-cover" />
+          </Carousel.Item>
+        ))}
+      </Carousel>
 
-    <h1 className='bg-gray-100 justify-center text-center mt-1 mb-1' >Our Top Collection</h1>
+      {/* Top Collection */}
+      <h1 className="text-center text-3xl font-bold my-8">Our Top Collection</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 w-[90%] m-auto">
+        {products.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
 
-    <div id='topwatches' className='flex justify-evenly items-center  flex-wrap w-[90%] m-auto'>
-      {ans}
-      
-    </div>
-   </>
-  )
-}
+      {/* Featured Section */}
+      <section className="bg-gray-100 py-10 mt-10">
+        <h2 className="text-center text-2xl font-bold mb-6">Featured Watches</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-[90%] m-auto">
+          {products.slice(0, 3).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
 
-export default Home
+      {/* Best Sellers */}
+      <section className="bg-white py-10">
+        <h2 className="text-center text-2xl font-bold mb-6">Best Sellers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-[90%] m-auto">
+          {products.slice(3, 6).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
+
+      {/* New Arrivals */}
+      <section className="bg-gray-100 py-10">
+        <h2 className="text-center text-2xl font-bold mb-6">New Arrivals</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-[90%] m-auto">
+          {products.slice(6, 9).map((p) => (
+            <ProductCard key={p.id} product={p} />
+          ))}
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="bg-white py-10">
+        <h2 className="text-center text-2xl font-bold mb-6">What Our Customers Say</h2>
+        <div className="flex flex-col md:flex-row justify-center gap-6 w-[90%] m-auto">
+          <div className="p-6 bg-gray-50 rounded-lg shadow-md">
+            <p>"Amazing quality watches! Totally worth it."</p>
+            <p className="mt-2 font-bold">- Rahul</p>
+          </div>
+          <div className="p-6 bg-gray-50 rounded-lg shadow-md">
+            <p>"Fast delivery and great packaging."</p>
+            <p className="mt-2 font-bold">- Sneha</p>
+          </div>
+          <div className="p-6 bg-gray-50 rounded-lg shadow-md">
+            <p>"Best collection of premium watches online!"</p>
+            <p className="mt-2 font-bold">- Aman</p>
+          </div>
+        </div>
+      </section>
+
+     
+    </>
+  );
+};
+
+export default Home;

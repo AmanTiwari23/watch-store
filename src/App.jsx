@@ -11,6 +11,10 @@ import Checkout from './pages/Checkout';
 import PaymentDone from './pages/PaymentDone';
 import Orders from './adminpages/Orders';
 
+// NEW IMPORTS
+import ProductDetails from './pages/ProductDetails';   // Single product page
+import Wishlist from './pages/Wishlist';               // Wishlist page
+
 // Loader Component
 const Loader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
@@ -33,30 +37,34 @@ const AppWrapper = () => {
     <>
       {loading && <Loader />}
       <Routes>
+        {/* USER ROUTES */}
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="mycart" element={<Mycart />} />
-          <Route path='checkout' element={<Checkout/>}/>
-          <Route path='paydone' element={<PaymentDone/>} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="paydone" element={<PaymentDone />} />
+          
+          {/* NEW ROUTES */}
+          <Route path="product/:id" element={<ProductDetails />} /> 
+          <Route path="wishlist" element={<Wishlist />} />
         </Route>
 
+        {/* ADMIN ROUTES */}
         <Route path="/admin" element={<AdminDashBoard />}>
           <Route path="addproduct" element={<AddProduct />} />
-          <Route path="orders" element={<Orders/>} />
+          <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>
     </>
   );
 };
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <AppWrapper />
-    </BrowserRouter>
-  );
-};
+const App = () => (
+  <BrowserRouter>
+    <AppWrapper />
+  </BrowserRouter>
+);
 
 export default App;
