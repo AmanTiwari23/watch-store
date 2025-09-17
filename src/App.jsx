@@ -18,7 +18,7 @@ import Wishlist from './pages/Wishlist';               // Wishlist page
 // Loader Component
 const Loader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-    <div className="w-12 h-12 border-4 border-blue-500 border-dashed rounded-full animate-spin"></div>
+    <div className="w-12 h-12 border-4 border-gray-800 border-dashed rounded-full animate-spin"></div>
   </div>
 );
 
@@ -29,7 +29,7 @@ const AppWrapper = () => {
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 800);
+    const timer = setTimeout(() => setLoading(false), 300);
     return () => clearTimeout(timer);
   }, [location]);
 
